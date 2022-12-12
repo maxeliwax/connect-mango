@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Image Uploading</title>
+
+<style>
+body {
+width: 80vw;
+min-height: 100vh;
+margin-inline: auto;
+}
+
+.uploaded-images-list {
+width: 100%;
+display: grid;
+grid-template-columns: 40% 60%;
+gap: 1rem;
+}
+
+img {
+width: 400px;
+object-fit: cover;
+}
+
+p {
+
+}
+</style>
+</head>
+
+<body>
+    <h1>To Upload Image on mongoDB</h1>
+<form action="/" method="POST" enctype="multipart/form-data">
+<fieldset>
+<legend>Upload images</legend>
+
+<input type="radio" id="pos" name="pos" value="1" selected>left</option>
+<input type="radio" id="pos" name="pos" value="2">right</option>
+<input type="radio" id="pos" name="pos" value="3">center</option>
+<input type="radio" id="pos" name="pos" value="4">footer</option>
+<input type="radio" id="pos" name="pos" value="5">Utan bild</option>
+
+
+<div class="main-form">
+<center>
+<label for="name">Image Title</label>
+<input type="text" id="name" placeholder="Name"
+name="name" required>
+</center>
+<br>
+<center>    
+<div>
+<label for="desc">Image Description</label>
+<textarea id="desc" name="desc" rows="10" cols="58"
+placeholder="Description" required>
+</textarea>
+</div>
+</center>
+<div>
+<label for="image">Upload Image</label>
+<input type="file" id="image" name="image" >
+</div>
+<div>
+<button type="submit">Submit</button>
+</div>
+</div>
+</fieldset>
+</form>
+
+
+    <h2>Uploaded Images</h2>
+</div>
+<div class="uploaded-images-list">
+<center><div>
+
+    <% items.forEach(function(image) { %>
+        <% if (image.pos == 5) { %>
+        <h5><%= image.name %></h5>
+        <p><%= image.desc %></p>
+        <p><%= image.pos %></p>
+        <% } %>
+        <% }); %>
+
+
+</div></center>
+
+<div> <h5>TEXT MELLAN BILDER</h5>
+<br>
+</div>
+<% items.forEach(function(image) { %>
+
+<img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>">
+<div>
+
+<h5><%= image.name %></h5>
+
+<p><%= image.desc %></p>
+<p><%= image.pos %></p>
+
+
+</div>
+<% }); %>
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>
